@@ -25,10 +25,8 @@ class FlutterWebAuthPlugin(private var context: Context? = null, private var cha
       channel?.setMethodCallHandler(this)
   }
 
-  override public fun onAttachedToEngine(binding: FlutterPluginBinding) {
-        context = binding.applicationContext
-        channel = MethodChannel(binding.binaryMessenger, "flutter_web_auth")
-        channel?.setMethodCallHandler(this)
+  override fun onAttachedToEngine(binding: FlutterPlugin.FlutterPluginBinding) {
+      initInstance(binding.binaryMessenger, binding.applicationContext)
   }
 
   override public fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
